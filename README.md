@@ -1,4 +1,5 @@
 # cppknowledge-master
-- 分享C++、计算机网络、操作系统、数据库
-- 后续：git、Linux、数据结构与算法
-- 专注有条理的知识框架，提供入门看书路线、面试问题及回答
+- C++、Computer Networking、Operating System、MySQL、Redis
+- todo...：git、Linux、数据结构与算法
+- xxx1：conception + question
+- xxx2：question + answer
