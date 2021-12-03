@@ -7,7 +7,7 @@
 - Conception：
   1. 架构
 
-- Question：
+- Question + Answer：
 
 # 基础/语法问题
 
@@ -16,14 +16,14 @@
   2. char和varchar
   3. drop、delete、truncate
   4. 巴斯-科德范式（BCNF第三范式的子集）、第四范式(4NF）和第五范式（5NF，又称完美范式）
-- Question：
+- Question + Answer：
   1. 
 
 # 引擎
 
 - Conception：
   1. InnoDB、MyISAM、Memory
-- Question：
+- Question + Answer：
   1. 存储引擎对比？
 
 # 索引
@@ -46,12 +46,12 @@
   12. 一些规则：
   13. 一些规则：最左前缀原则、索引下推
   14. 不太常见
-  15. 倒排索引、反向索引
-  16. 倒序索引
-  17. 前缀索引
+  15. 倒排索引、反向索引（根据内容找主键，别的是根据主键找内容）
+  16. 倒序索引（顺序反）
+  17. 前缀索引（用一个列中的前几个字符建立索引）
   18. 空间索引
 
-- Question：
+- Question + Answer：
 
   1. 索引是什么？为什么要有索引？
   2. 索引的优缺点？
@@ -63,11 +63,11 @@
 - Conception：
   1. 四个特性（ACID）
   2. 并发事务访问相同记录的情况（读读，读写写读，写写）
-  3. 脏写脏读、不可重复读、幻读
+  3. 脏写脏读、不可重复读、幻读（小林写的好）
   4. 4个隔离级别
   5. MVCC
   6. 当前读、快照读
-- Question：
+- Question + Answer：
   1. 
 
 # 日志
@@ -93,7 +93,7 @@
   6. 乐观锁、悲观锁
   7. 记录锁 间隙锁 临键锁
   8. 死锁
-- Question：
+- Question + Answer：
   1. 
 
 # 键
@@ -114,7 +114,7 @@
 
 # 优化*
 
-- Question：
+- Question + Answer：
   1. 
 
 # 其他问题/概念
