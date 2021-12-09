@@ -9,6 +9,7 @@
   4. hash：压缩链表、哈希表/字典、
   5. set：哈希表/字典、整数集合
   6. zset：压缩链表、跳表
+  6. GEO、Bitmap、HyperLogLog
   7. quicklist（双向链表）、listpack（压缩链表）
 - Question：
   1. 
@@ -21,10 +22,17 @@
 - Question：
   1. 
 
-# 集群、主从、哨兵、分布式
+# 主从复制、Sentinel哨兵集群、Cluster分片集群 
 
-# 内存管理 淘汰策略、淘汰算法、删除策略
+# 淘汰策略、删除策略 内存管理 
 
 # 缓存问题
+
+- Conception：
+  1. 
+
+# 事务
+
+# 分布式
 
 # Redis6.0多线程
