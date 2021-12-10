@@ -7,6 +7,7 @@
   2. 每一层的常见协议？
   3. 每一层传输的基本数据单元（流、段、包、帧、01电信号）？
   3. 为什么要分层？
+  3. 键入网址到网页显示，都发生了什么？
 
 # HTTP
 
@@ -28,27 +29,26 @@
   2. 说一下HTTP常见的请求方式？
   3. GET/POST区别？
   4. GET请求中URL编码的意义？
-  5. HTTP状态码？（301、302）
+  5. HTTP状态码？
   6. HTTP请求/相应报文格式、常见字段？
   7. HTTP请求的完整过程？
-  8. HTTP1.0问题？
-  9. HTTP1.1优点？
-  10. HTTP1.1改进？
-  11. HTTP1.1问题？
-  12. HTTPS做了什么（三点）？
-  13. HTTPS缺点？
-  14. HTTP2.0改进？
-  15. HTTP2.0问题？
-  16. HTTP3.0改进？
-  17. HTTP和HTTPS的区别？
-  18. HTTP1.0和HTTP1.1的区别？
-  19. 长连接和短连接？（Keep-live）
-  20. HTTP1.1和HTTP2.0的区别？
-  21. HTTP2.0和HTTP3.0的区别？
-  22. SSL/TLS
-  23. SST/TLS握手过程 /HTTPS工作过程/HTTPS原理？
-  24. Cookie和Session是什么？如何配合？区别？
-  25. 分布式Session问题？
+  8. 长连接和短连接？（Keep-live）
+  9. HTTP1.0问题？
+  10. HTTP1.1优缺点？
+  11. HTTPS做了什么（三点）？
+  12. HTTPS优缺点？
+  13. HTTP2.0优缺点？
+  14. HTTP3.0优点？
+  15. HTTP和HTTPS的区别？
+  16. HTTP1.0和HTTP1.1的区别？
+  17. HTTP1.1和HTTP2.0的区别？
+  18. HTTP2.0和HTTP3.0的区别？
+  19. SSL/TLS
+  20. SST/TLS握手过程 /HTTPS工作过程/HTTPS原理？
+  21. Cookie、Session、Token是什么？
+  22. Cookie和Session如何配合？
+  23. Cookie和Session区别？
+  24. 分布式Session问题？
   15. 数字签名、数字证书？
 
 # DNS
@@ -137,6 +137,10 @@
   2. Xss攻击？
   3. SQL注入？
   4. CSRF攻击？
+
+# 一些暂时不知道归在哪的问题
+
+- 负载均衡算法有哪些？
 
 # 遗留问题
 

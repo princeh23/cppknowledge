@@ -1,5 +1,9 @@
 # 参考文章
 
+# 整体
+
+
+
 # 数据类型
 
 - Conception：
@@ -22,14 +26,37 @@
 - Question：
   1. 
 
-# 主从复制、Sentinel哨兵集群、Cluster分片集群 
+# 主从复制
 
-# 淘汰策略、删除策略 内存管理 
+# Sentinel哨兵集群
+
+# Cluster分片集群 
+
+# 淘汰策略
+
+- Conception：
+  1. 定时删除
+  2. 惰性删除
+  3. 定期删除
+
+# 删除/替换策略 
+
+- Concetion：
+  1. noevction
+  2. volatile-lru volatile-random volatile-ttl volatile-lfu
+  3. allkeys-lru allkeys-randon allkeys-lfu
+
+# 内存管理 
 
 # 缓存问题
 
 - Conception：
-  1. 
+  1. 缓存和数据库的数据不一致
+  2. 缓存雪崩
+  3. 缓存击穿
+  4. 缓存穿透
+  5. 缓存预热、缓存降级
+- Q
 
 # 事务
 
