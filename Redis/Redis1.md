@@ -2,7 +2,10 @@
 
 # 整体
 
-
+- Conception：
+  1. Redis、Memcached
+- Question：
+  1. 
 
 # 数据类型
 
@@ -26,18 +29,14 @@
 - Question：
   1. 
 
-# 主从复制
-
-# Sentinel哨兵集群
-
-# Cluster分片集群 
-
 # 淘汰策略
 
 - Conception：
   1. 定时删除
   2. 惰性删除
   3. 定期删除
+- Question：
+  1. 
 
 # 删除/替换策略 
 
@@ -45,8 +44,6 @@
   1. noevction
   2. volatile-lru volatile-random volatile-ttl volatile-lfu
   3. allkeys-lru allkeys-randon allkeys-lfu
-
-# 内存管理 
 
 # 缓存问题
 
@@ -56,13 +53,50 @@
   3. 缓存击穿
   4. 缓存穿透
   5. 缓存预热、缓存降级
-- Q
+- Question：
+  1. 
+
+# 主从复制
+
+- Conception：
+  1. 
+- Question：
+  1. 
+
+# Sentinel哨兵集群
+
+- Conception：
+  1. 
+- Question：
+  1. 
+
+# Cluster分片集群 
+
+- Conception：
+  1. 
+- Question：
+  1. 
 
 # 事务
 
+- Conception：
+  1. 
+- Question：
+  1. 
+
 # 分布式
 
+- Conception：
+  1. 
+- Question：
+  1. 
+
 # Redis6.0多线程
+
+- Conception：
+  1. 
+- Question：
+  1. 
 
 # todo
 
