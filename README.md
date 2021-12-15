@@ -13,7 +13,7 @@
 - xxx2：question + answer
 # 自己制定完善的计划
 - 2021.12.1 - 2021.12.10：Computer Networking + MySQL + Redis完结
-- 2021.12.11 - 2021.12.25：C++ + Mysql完结，系统看情况
+- 2021.12.11 - 2021.12.25：C++ + Mysql + Redis完结，系统看情况
 - todo...
 
 # 进度跟踪
