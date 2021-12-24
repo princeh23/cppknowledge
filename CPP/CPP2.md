@@ -1,37 +1,70 @@
 # 基础
 
 - Conception：
+  1. C和C++区别、和Java区别、和python区别
   1. 预处理、编译、汇编、链接
   2. 静态链接、动态链接
   3. 动态编译、静态编译
   4. 动态联编、静态联编
   5. 动态绑定 静态绑定
 - Question：
-  1. 
+  1. C和C++有什么区别？
+     - C++是面向对象的语言，C是面向过程的语言
+     - C++引入new/delete的概念，取代了C中malloc/free的概念
+     - C++引入引用，C没有
+     - C++引入类，C没有
+     - C++引入函数重载，C没有
+  2. C++和Python的区别？
+  3. C++和Java的区别？
 
 # C++基础语法
 
 - Conception：
-  1. C和C++区别、和Java区别、和python区别
-  2. 声明、定义
-  3. static
-  4. #define 
-  5. typedef
-  6. const 指针常量、常量指针 顶层const、底层const
-  7. volatile、mutable、explicit
-  8. inline
-  9. #ifdef、#else、#endif、#ifndef
-  10. sizeof、strlen
-  11. strcpy、sprintf、memcpy
-  12. extern"C"
-  13. 指针、引用
-  14. 函数传递参数（形参、实参  值传递、指针传递、引用传递）
-  15. 指针常量、常量指针
-  16. 指针数组、数组指针
-  17. 悬挂指针、野指针
-  18. 函数指针
-  1. 异常处理（try catch throw exception类）
+  
+  1. 声明、定义
+  2. 指针、引用
+  3. 函数传递参数（形参、实参  值传递、指针传递、引用传递）
+  4. 指针常量、常量指针
+  5. 指针数组、数组指针
+  6. 悬挂指针、野指针
+  7. 函数指针
+  8. static
+  9. #define 
+  10. typedef
+  11. const 指针常量、常量指针 顶层const、底层const
+  12. volatile、mutable、explicit
+  13. inline
+  14. #ifdef、#else、#endif、#ifndef
+  15. sizeof、strlen
+  16. strcpy、sprintf、memcpy
+  17. extern"C"
+  18. 异常处理（try catch throw exception类）
+  
 - Question：
+
+  1. 数组中a和&a有什么区别？
+
+     - ```cpp
+       int a[10]; 
+       int (*p)[10] = &a;
+       
+       a是数组名，也是数组元素首地址;
+       a+1表示地址+1，表示a[1]的地址;
+       *(a + 1) = a[1];
+       
+       &a是数组的指针，类型为int (*)[10]（数组指针）
+       &a + 1表示数组首地址加上整个数组的偏移，表示a尾元素再下一个元素的地址
+       ```
+
+  2. 数组指针、指针数组？
+
+     - http://c.biancheng.net/view/335.html
+
+  3. static关键字？
+
+     - 
+
+  4. 
 
 # C++面向对象
 
