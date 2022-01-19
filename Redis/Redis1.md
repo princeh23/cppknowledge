@@ -43,7 +43,7 @@
 - Question：
   1. 
 
-# 删除/替换策略 
+# 删除/替换/内存淘汰策略 
 
 - Concetion：
   1. noevction
