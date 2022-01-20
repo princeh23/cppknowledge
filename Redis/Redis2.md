@@ -13,9 +13,9 @@
      -  本质上是一个key-value类型的数据库，和memcached类似，加载到内存中进行操作，纯内存操作，性能出色，是已知的性能最快的key-value数据库
      - 优点：
        - 读写性能出色
+       - 数据结构丰富
        - 支持数据持久化，AOF、RDB两种
        - 支持事务，所有操作是原子性的，可以通过MULTI和EXEC指令
-       - 数据结构丰富
        - 支持主从复制、读写分离
      - 缺点：
        - 内存有限，不适合海量数据的高性能读写
@@ -66,6 +66,43 @@
   8. quicklist（双向链表）、listpack（压缩链表）
 - Question：
   1. 八种数据类型？应用场景？
+  
+     - String：二进制安全、可以包含任何数据，比如jpg图片或者序列化的对象（常规计数）
+  
+     - List：简单的字符串列表，按照插入顺序排序（最新回复）
+  
+     - Hash：键值对集合（）
+  
+     - Set：无序的去重集合（共同好友、共同关注）
+  
+     - SortedSet：可排序版的set（排行榜）
+  
+     - Bitmap：位图，一个以位为单位的数据
+  
+     - Hyperloglog：统计基数，有误差
+  
+     - Geospatial：地理位置信息（打车定位）
+  
+     - ```cpp
+       SET runoob "菜鸟教程"
+       GET runoob
+       
+       HMSET runoob field1 "Hello" field2 "World"
+       HGET runoob field1
+       
+       lpush runoob redis
+       lpush runoob mongodb
+       lpush runoob rabbitmq
+       lrange runoob 0 10
+           
+       sadd runoob redis
+       sadd runoob rabbitmq
+       smembers runoob
+           
+       zadd runoob 0 redis
+       zadd runoob 0 mongodb
+       ZRANGEBYSCORE runoob 0 1000
+       ```
 
 # 2种持久化
 
