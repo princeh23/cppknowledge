@@ -954,7 +954,7 @@
   21. **unordered_map、unordered_set、unordered_multimap、unordered_multiset底层原理？**
   
       - unordered\_和hash\_的本质一样，只不过unordered\_被纳入标准
-      - 底层用哈希表，用一个vector数组存储哈希值，并且使用拉链法、链表解决冲突
+      - 底层用哈希表，用一个**vector数组存储哈希值**，并且使用拉链法、**链表解决冲突**
       - ![C++ STL 无序容器存储状态示意图](http://c.biancheng.net/uploads/allimg/200221/1-200221131A4220.gif)
       - vector大小为质数，57、97、193...（28个质数），超过大小新开一个vector，交换两个vector，释放临时vector
       - 每个**链表**称为一个**桶**
