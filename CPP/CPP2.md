@@ -583,6 +583,7 @@
   1. 内存泄露
   1. 空类大小、类大小、对象大小
   1. 对象复用、零拷贝
+  1. 内存模型（无多态、有多态单一继承、多重继承、虚拟继承）
   
 - Question：
   1. **C++的内存分区？**
@@ -741,11 +742,54 @@
        //若alignas小于自然对齐的最小单位，则被忽略
        //想使用单字节对齐的方式，使用alignas是无效的。应该使用#pragma pack(push,1)或者使用__attribute__((packed))
        ```
+     
+  - 内存模型（无多态、有多态 单一继承、多重继承、虚拟继承）?
+  
+    - 单一继承无多态
+    
+      ![img](https://img-blog.csdn.net/20170716213346659?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY4NDkyMzM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
+    
+    - 单一继承有多态
+    
+      ![img](https://img-blog.csdn.net/20170716220134403?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY4NDkyMzM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
+    
+    - 多重继承：每个虚函数表中的f都被覆盖
+    
+      ![这里写图片描述](https://img-blog.csdn.net/20180317175113558?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZ2l0aHViXzMzODczOTY5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+    
+    ![这里写图片描述](https://img-blog.csdn.net/20180317175138455?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZ2l0aHViXzMzODczOTY5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+    
+    - 菱形继承
+    
+      ![img](https://img-blog.csdn.net/20180227110103852)
+    
+      A
+    
+      C
+    
+      A
+    
+      B
+    
+      D
+    
+    - 虚 菱形继承
+    
+      ![img](https://img-blog.csdn.net/20180227110228784)
+    
+      A 
+    
+      C
+    
+      B
+    
+      D
 
 # C++ STL
 
 - Conception：
   1. 容器、算法、迭代器、空间配置器、仿函数、适配器
+  1. traits机制
   1. vector
   1. list
   1. deque
@@ -772,14 +816,20 @@
      - 内存池的分配/chunk_alloc()函数：
        
        - \>= 20：分配20个
-         - \>=1 && \<=20：分配剩余个
+       - \>=1 && \<=20：分配剩余个
        - ==0：
            - 先将剩余的一些内存分配给其他合适的链表；
          - 然后调用malloc分配所需内存的2倍；
            - malloc成功返回给refill；
          - malloc失败先去其他更大的链表搜寻可用内存块，添加到内存池（递归调用chunk_alloc），如果其他链表也被用完，转向第一级空间配置器。
   
-  3. **容器有哪些？**
+  3. **traits机制？**
+  
+     - ![img](https://pic4.zhimg.com/80/v2-2e54692df5c68a127925d07036bb0ff3_720w.jpg)
+     - [traits讲解](https://zhuanlan.zhihu.com/p/85809752)
+     - [iterator和type traits讲解](https://blog.csdn.net/weixin_42462202/article/details/101314996)
+     
+  4. **容器有哪些？**
   
      - 序列式容器：
        - array、vector、deque、list、forward_list、string
@@ -788,7 +838,7 @@
      - 容器适配器：
        - stack、queue、priority_queue
   
-  4. **vector底层原理？**
+  5. **vector底层原理？**
   
      - 一段连续的线性内存空间，有三个迭代器start、finish、end_of_storage
   
@@ -803,17 +853,17 @@
      - 空间不够时，申请1.5/2倍空间，把原来的数据拷贝到新的内存空间，释放原来的内存空间
      - 删除时候只删除数据，不释放空间
   
-  5. **vector中size和capacity区别？**
+  6. **vector中size和capacity区别？**
   
      - size：当前有多少元素（finsh - start）
      - capacity：当前存储空间能容纳多少元素（end_of_storage - start）
   
-  6. **vector中reserve和resize区别？**
+  7. **vector中reserve和resize区别？**
   
      - reserve：仅仅设置**capacity**这个参数
      - resize：容量变大，填充初始值；容量变小，不调整容量，只把前n个元素填充为初始值
   
-  7. **vector中的元素可以是引用吗？**
+  8. **vector中的元素可以是引用吗？**
   
      - 不可以
   
@@ -827,7 +877,7 @@
        b = c; //不支持
        ```
   
-  8. **vector使迭代器失效的情况？**
+  9. **vector使迭代器失效的情况？**
   
      - erase()：插入位置之后的迭代器、指针、引用失效
   
@@ -846,7 +896,7 @@
        it=q.erase(it);
        ```
   
-  9. **vector1.5/2倍扩容原因？**
+  10. **vector1.5/2倍扩容原因？**
   
      -  VS 下是 1.5倍，在 GCC 下是 2 倍
      -  为什么不能太小/为什么不是等长而是倍数增长：
@@ -858,7 +908,7 @@
         - win下会对释放的内存进行合并，1.5倍为了更好复用
         - linux下伙伴系统（将整个内存区域构建成基本大小basicSize的1倍、2倍、4倍...即要求内存空间分区链均对应2的整次幂倍大小的空间）管理空闲分区，2倍更合适
   
-  10. **vector如何释放空间？**
+  11. **vector如何释放空间？**
   
       - vector删除元素内存不释放，析构时候才全部释放，clear()也是清空但不删除
   
@@ -872,20 +922,20 @@
         vector().swap(Vec); //清空Vec的内存；
         ```
   
-  11. **为什么vector的插入操作可能导致迭代器失效？**
+  12. **为什么vector的插入操作可能导致迭代器失效？**
   
       - 如果超过容量，2倍扩容是开辟新的内存再拷贝过去，原来的空间释放，迭代器失效
   
-  12. **频繁的push_back()对vector性能的影响？**
+  13. **频繁的push_back()对vector性能的影响？**
   
       - 可能影响内存的重新分配，每次都需要开辟新的内存再拷贝过去，释放原来的空间
   
-  13. **list的底层实现原理？**
+  14. **list的底层实现原理？**
   
       - 带头节点的双向循环链表
       - ![img](http://c.biancheng.net/uploads/allimg/191218/2-19121Q6445Q07.gif)
   
-  14. **deque的底层实现原理？**
+  15. **deque的底层实现原理？**
   
       - deque由一个map数组组成
   
@@ -906,13 +956,13 @@
         - deque的start迭代器和finish迭代器并不是一开始就指向map数组的头尾，指向map的中间节点，为了使前后插入留有的空间相同
         - 插入、删除操作为了提高效率，会判断元素偏前还是偏后，偏前移动前面的元素
   
-  15. **vector、list、deque适用场景？**
+  16. **vector、list、deque适用场景？**
   
       - vector：需要随机存取，不关心插入删除
       - list：需要插入删除，不关心随机存取（写多读少的场景）
       - deque：需要随机存取、头尾的随机存取
   
-  16. **map、set、multiset、multimap底层原理？**
+  17. **map、set、multiset、multimap底层原理？**
   
       - 红黑树
       - 特点：
@@ -924,12 +974,12 @@
       - 从根节点到叶子节点的最长路径不大于最短路径的 2 倍：最短路径是全黑色节点，最长路径（有红色节点必有黑色节点，红黑色节点数量相同时候，长度=黑色或红色 * 2）
       - 增删改查速度为logn
   
-  17. **为何map和set的插入删除效率比其他序列容器高，而且每次insert之后，以前保存的iterator不会失效？**
+  18. **为何map和set的插入删除效率比其他序列容器高，而且每次insert之后，以前保存的iterator不会失效？**
   
       - 存储的是节点，不需要内存拷贝和内存移动
       - 插入操作只是指针换来换区，节点内存没有改变
   
-  18. **map的插入方式？**
+  19. **map的插入方式？**
   
       - ```cpp
         //关键字存在插入失败，不会报错，但数据插入不了
@@ -941,17 +991,17 @@
         m[1] = 1;
         ```
   
-  19. **map中find和[]的区别？**
+  20. **map中find和[]的区别？**
   
       - []：找到key返回这个值；没找到key插入value
       - find()：找到返回该位置迭代器；没找到返回尾迭代器
   
-  20. **map和vector中[]的区别？**
+  21. **map和vector中[]的区别？**
   
       - vector中[]会做边界检查
       - map中[]找到返回，没找到插入
   
-  21. **unordered_map、unordered_set、unordered_multimap、unordered_multiset底层原理？**
+  22. **unordered_map、unordered_set、unordered_multimap、unordered_multiset底层原理？**
   
       - unordered\_和hash\_的本质一样，只不过unordered\_被纳入标准
       - 底层用哈希表，用一个**vector数组存储哈希值**，并且使用拉链法、**链表解决冲突**
@@ -960,7 +1010,7 @@
       - 每个**链表**称为一个**桶**
       - 总键值对数/桶数=负载因子，负载因子如果超过默认值，自动增加桶数，重新哈希 
   
-  22. 迭代器底层实现原理？
+  23. 迭代器底层实现原理？
   
       - 迭代器是连接容器和算法的桥梁，在不了解容器内部原理的情况下遍历容器
   
@@ -972,7 +1022,7 @@
   
       - https://www.1024sou.com/article/116231.html
   
-  23. **迭代器的型别？**
+  24. **迭代器的型别？**
   
       - 迭代器的相应型别：迭代器所指之物的类型（特性）
       - value_type：迭代器所指对象类型（T）
@@ -981,16 +1031,16 @@
       - pointer_type：迭代器所指对象类型的指针（*T）
       - iterator_categoty：迭代器种类类型
   
-  24. **迭代器的种类？**
+  25. **迭代器的种类？**
   
-      - input_iterator：只读，从一个对象中读出元素（==、!=、->、*）
-      - output_iterator：只写，向一个对象中修改/添加（*i = v，++）
+      - **input_iterator**：只读，从一个对象中读出元素（==、!=、->、*）
+      - **output_iterator**：只写，向一个对象中修改/添加（*i = v，++）
       - forward_iterator：读写、单向移动，一次一步（++）
       - bidirectional_iterator：读写、双向移动，一次一步（--）
       - random access iterator：所有操作，任意读写，还另外支持[i]
       - ![img](https://images.cnblogs.com/cnblogs_com/xkfz007/201210/201210102213047928.png)
   
-  25. **各种容器删除一个元素？**
+  26. **各种容器删除一个元素？**
   
       - 顺序容器：迭代器之后的容器失效（list除外），erase返回值是下一个有效迭代器
   
@@ -1004,7 +1054,7 @@
         c.erase(it++);
         ```
   
-  26. **迭代器失效？**
+  27. **迭代器失效？**
   
       - 插入：vector、deque插入之后的位置失效，list、forward_list、map、set插入操作不失效
       - 删除：vector、deque删除之后的位置失效，list、forward_list、map、set仅删除位置失效；递增当前iterator即可获取下一个位置
@@ -1012,11 +1062,11 @@
       - unordered_迭代器意义不大，stack、queue、priority_queue没有迭代器
       - [掘金总结](https://juejin.cn/post/6971252856498159653)
   
-  27. 容器适配器？
+  28. 容器适配器？
   
       - 
   
-  28. **如何在共享内存上使用STL？**
+  29. **如何在共享内存上使用STL？**
   
       - [讲解](https://blog.51cto.com/u_15127614/3384436)
 
