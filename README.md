@@ -6,17 +6,18 @@
 - xxx2：讲解概念，提供问题答案（可能不全，仅针对我自己没有记住的点进行笔记梳理）
 - 并非全部原创，更多的是在进行自我整理，侵删~
 # 知识内容
-- C++、Computer Networking、Operating System、MySQL、Redis
-- todo...:git、Linux、Data Structure and algorithm
+- C++、计算机网络、操作系统、MySQL、Redis、数据结构与算法、设计模式
+- todo...:git、Linux
 # 每个文件都是干什么的
 - xxx1：conception + question
 - xxx2：question + answer
 # 自己制定完善的计划
-- 2021.12.1 - 2021.12.10：Computer Networking + MySQL + Redis完结
+- 2021.12.1 - 2021.12.10：计算机网络 + MySQL + Redis完结
 - 2021.12.11 - 2021.12.25：C++ + Mysql + Redis完结，系统看情况
 - 2021.12.24 - 2022：C++、Redis完结
 - C++、计网、OS、MySQL、Redis结束后：看面经持续补充+回顾；数据结构和算法相关八股开始
 - 2022.1.19 - ：数据结构与算法、Redis
+- 2022.1.27：23天一天一个设计模式
 - todo...
 
 # 进度跟踪
@@ -24,4 +25,3 @@
 - 2021.12.12：计网完结，后续再看再细节补充，Mysql还没来得及写答案，Redis发现之前学的不够，放到最后吧
 - 2021.12.24：MySQL、OS完结
 - 2022.1.3：C++完结
-- 
