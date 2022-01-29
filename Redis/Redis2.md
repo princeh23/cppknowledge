@@ -319,13 +319,6 @@
      - Lua脚本：Redis保证脚本内的命令都执行，也不提供回滚，部分命令错误也依旧执行
      - 中间标记变量判断是否完成：编写复杂
 
-# 分布式锁
-
-- Conception：
-  1. Redis、MySQL、Zookeeper分布式锁
-- Question：
-  1. 
-
 # 单线程、Redis6.0多线程
 
 - Conception：
@@ -405,6 +398,18 @@
        - Redis的逻辑处理依旧又交还在Master线程，模型复杂度增加但是线程并发安全问题解决
 
   9. [Redis6.0讲解文章](https://www.cnblogs.com/gz666666/p/12901507.html)
+
+# 分布式锁
+
+- Conception：
+  1. 相关命令
+  2. Redis、MySQL、Zookeeper分布式锁
+  3. RedLock
+- Question：
+  1. 相关命令：
+     - SETNX
+     - DEL
+     - EXPIRE
 
 # 优化
 
