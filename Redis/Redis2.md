@@ -2,6 +2,7 @@
 
 - 程序员库森
 - [CSDN Redis面试题](https://blog.csdn.net/zhaoxi2020/category_11053951.html?spm=1001.2014.3001.5482)
+- [CSDN几率大的Redis面试题（待看...）](https://blog.csdn.net/Butterfly_resting/article/details/89668661)
 
 # 整体
 
