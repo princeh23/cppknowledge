@@ -306,11 +306,12 @@
   
   17. **strcpy、sprintf、memcpy的区别？**
   
-      |          | strcpy             | sprintf                        | memcpy                                         |
-      | -------- | ------------------ | ------------------------------ | ---------------------------------------------- |
-      | 操作对象 | 两个对象均为字符串 | 源为多种数据类型，目的为字符串 | 两个对象为任意可操作的内存地址，不局限数据类型 |
-      | 执行效率 | 中等               | 低                             | 最高                                           |
-      | 功能     | 字符串直接拷贝     | 其他数据类型格式到字符串的转换 | 内存块的拷贝                                   |
+      |          | strcpy             | sprintf                        | memcpy                                                       |
+      | -------- | ------------------ | ------------------------------ | ------------------------------------------------------------ |
+      | 操作对象 | 只能为**字符串**   | 源为多种数据类型，目的为字符串 | 复制**任意内容**                                             |
+      | 执行效率 | 中等               | 低                             | 最高                                                         |
+      | 功能     | **字符串直接拷贝** | 其他数据类型格式到字符串的转换 | **内存块的拷贝**                                             |
+      | 复制长度 | 不需要指定长度     |                                | void *memcpy(void *destin, void *source, unsigned n)根据第三个参数决定 |
   
   18. 
   
@@ -630,12 +631,12 @@
        |                            | operator new函数分配一块足够大的内存；调用构造函数传入初值；对象构造完成后，返回一个指向该对象的指针 | 分配内存                       |
        |                            | 调用析构函数；调用operator delete函数释放内存空间            | 释放内存                       |
        | 是否调用构造函数与析构函数 | 调用                                                         | 不调用                         |
-       | 分配成功的返回值           | 完整类型指针                                                 | void*，需要强制转换            |
+       | **分配成功的返回值**       | 完整类型指针                                                 | void*，需要强制转换            |
        | 分配失败的返回值           | bad_alloc异常                                                | 返回NULL                       |
-       | 分配内存的大小             | 编译器计算                                                   | 指定大小                       |
+       | **分配内存的大小**         | 编译器计算                                                   | 指定大小                       |
        | 函数重载                   | 允许                                                         | 不允许（C中的库函数）          |
        | 是否可以相互**调用**       | operator new的实现可以基于malloc                             | malloc的实现不可以调用new      |
-       | 已分配内存的扩张           | 不支持                                                       | 使用realloc函数重新分配        |
+       | **已分配内存的扩张**       | 不支持                                                       | 使用realloc函数重新分配        |
        | 分配内存时内存不足         | 可以指定处理函数或重新制定分配器（new_handler、set_new_handler） | 返回NULL，无法通过用户代码处理 |
   
      - [参考1](https://www.cnblogs.com/qg-whz/p/5140930.html)、[参考2](https://zhuanlan.zhihu.com/p/338489910)
@@ -701,6 +702,11 @@
   
      - [参考](https://www.jianshu.com/p/179f3006e20d)
   
+  1. **调用new []之后，释放内存使用delete[]，没有指定需要析构的对象的个数，自己设计编译器的话怎么实现operator delete\[](void*)？**
+  
+     - 申请空间首地址用4个字节记录申请了多少空间
+     - 操作系统中记录了数组分配的大小，C++记录了析构函数
+     
   1. **内存泄露？**
   
      - 场景：
@@ -1155,12 +1161,19 @@
        cout << *ps2 << *ps1 << endl;                                  
        ```
 
-     - shared_ptr：共享式拥有，多个只能指针指向相同的对象；引用计数为0时释放对象；（同一**普通指针**不能同时为多个 shared_ptr 对象赋值，否则会导致程序发生异常）
+     - shared_ptr：共享式拥有，多个智能指针指向相同的对象；引用计数为0时释放对象；（同一**普通指针**不能同时为多个 shared_ptr 对象赋值，否则会导致程序发生异常）
 
+       - 构造函数初始为1
+       - 析构函数--，为0释放资源
+       - 拷贝构造函数++
+       - 赋值运算符用move
+       - 移动构造（&&）函数++
+       - 移动赋值运算符（&&）用move
+  
      - weak_ptr：对对象的弱引用，不会增加对象的引用计数，搭配shared_ptr使用；只可以从一个 shared_ptr 或另一个 weak_ptr 对象构造；解决shared_ptr**相互引用**时的死锁问题（两个shared_ptr相互引用，两个指针的引用计数永远不可能下降为0，资源永远不会释放）
-
+  
   2. **右值引用、移动构造、完美转发**
-
+  
      ```cpp
      右值引用（实现移动语义和完美转发，消除不必要的拷贝）：
      
@@ -1179,7 +1192,7 @@
      1.所有右值引用折叠到右值引用上仍然是一个右值引用。（A&& && 变成 A&&）
      2.所有的其他引用类型之间的折叠都将变成左值引用。 （A& & 变成 A&; A& && 变成 A&; A&& & 变成 A&）
      ```
-
+  
      ```cpp
      移动语义（传递的是临时对象的话，原来的东西拷贝完就没用了，新的还得再申请释放）：
          
@@ -1192,9 +1205,9 @@
      //移动赋值函数
      A& operator=(A&& a)
      ```
-
+  
      - copy和move的区别![](https://upload-images.jianshu.io/upload_images/4427263-81a47fdc9b8d9e98.png?imageMogr2/auto-orient/strip|imageView2/2/w/264/format/webp)
-
+  
      ```cpp
      完美转发（一个函数给另一个函数传参时候，原参数是左值/右值，新函数还能保持左值/右值，就是完美转发）：
      
@@ -1223,19 +1236,19 @@
      std::forward<int &>(x) //x转换成左值，a
      std::forward<int &&>(x) //x转换成右值，b
      ```
-
+  
      - 参考：[1知乎](https://zhuanlan.zhihu.com/p/335994370)、[2简书](https://www.jianshu.com/p/d19fc8447eaa)、[3CSDN](https://blog.csdn.net/zhangxiao93/article/details/74974546)
      
   3. **bind、functional**
-
+  
      - bind1st、bind2nd：本身还是一个函数对象
      - \<functional\>头文件中
      - 使用：
        - 1.用函数类型实例化function
        - 2.通过function调用operator()时候，需要传入对应参数
-
+  
      - void(*)(int ,int)：函数指针
-
+  
      - void(int, int)：函数原型
 
      - ```cpp
@@ -1244,7 +1257,7 @@
        function<void(int ,int)> func1 = f;
        func1();   //func1.operator()=> hello1()
        ```
-
+  
      - bind是函数模板
 
      - ```cpp
@@ -1253,7 +1266,7 @@
        //调用f
        bind(f, 10, 20)();
        ```
-
+  
      - ```cpp
        function<void(int ,int)> func1 = bind(func1, 10, 20);
        ```
@@ -1296,18 +1309,68 @@
      *ptr = 0xaa66;
      ```
      
-  1. 手写实现智能指针
+  2. **手写实现智能指针**
   
      ```cpp
      //拷贝构造函数中计数初始化为1
      //拷贝构造函数计数值+1
      //赋值运算符左边-1，右边对象引用计数+1
      //析构函数引用计数-1，如果为0:delete释放对象
+     template<typename T>
+     class sharedPtr{
+       private:
+         size_t *cnt;
+         T *ptr;
+       public:
+         sharedPtr()
+         ~sharedPtr()
+         sharedPtr(const sharedPtr& ptr){
+             
+         }
+         sharedPtr& operator=(const sharedPtr& ptr){
+             
+         }
+         sharedPtr(sharedPtr&& ptr){
+             
+         }
+         void operator=(sharedPtr&& ptr){
+             
+         }
+     }
+     ```
+  
+  3. **strcpy()**
+     
+     ```cpp
+     char *strcpy(char *dest, const char *src){
+     	char *ret = dest;
+         assert(dest != nullptr);
+         assert(src != nullptr);
+         while(*src != '\0'){
+             *(dest++) = *(src++);
+         }
+         *dest = '\0';
+         return dest;
+     }
+     //内存重叠问题
+     char *strcpy(char *dest, char * src){
+         char* ret = dest;
+         assert(dest != nullptr);
+         assert(src != nullptr);
+         memmove(dest, src, strlen(src) + 1);
+         return ret;
+     }
+     ```
+     
+  4. **memcpy()**
+  
+     ```cpp
+     void *memcpy(void *dest, void *source, unsigned n){
+     	assert(dest);
+     }
      ```
   
      
-  
-  3. 1
 
 # 遗留问题
 
