@@ -13,14 +13,33 @@
 
 ## Linux命令
 
+- Conception：
+  1. [每天一个Linux命令](https://www.cnblogs.com/peida/archive/2013/03/13/2956992.html)
 - Question：
-  1. **linux下改变文件权限的命令有哪些？**
+  1. **常用命令？**
+     - ls、mkdir、cp
+     - pwd：显示文件路径
+     - chmod：修改文件权限
+     - grep：正则匹配
+     - netstat：网络相关信息 [详解](https://www.cnblogs.com/ggjucheng/archive/2012/01/08/2316661.html)
+     - telnet：远程登陆命令
+     - ln：创建文件链接
+     - find：查找文件
+     - rm：删除一个文件或者目录
+     - df：查看磁盘使用情况
+     - free：查看内存使用情况
+  2. **Linux下进程相关命令？**
+     - ps
+     - top
+     - kill
+  3. **linux下改变文件权限的命令有哪些？**
      - chmod（change mode）
      - chgrp（change group）
      - chown
      - [讲解](https://www.cnblogs.com/cwwmmv/p/10535175.html)
-  2. **如果发现系统负载过高，应该怎么排查原因，如何解决？**
+  4. **如果发现系统负载过高，应该怎么排查原因，如何解决？**
      - 查看占用CPU高的进程：top
      - 查看进程下的线程：ps -mp pid -o THREAD,tid,time/ top -H -p pid
      - 查看堆栈信息：jstack -l pid > test.txt
      - [讲解](https://blog.csdn.net/weixin_39456575/article/details/113780635)
+  5. 
