@@ -66,10 +66,11 @@
 
 - Conception：
   1. 数据库三范式
-  2. char和varchar
-  3. drop、delete、truncate
-  3. 存储过程
-  4. 巴斯-科德范式（BCNF第三范式的子集）、第四范式(4NF）和第五范式（5NF，又称完美范式）
+  2. 反范式
+  3. char和varchar
+  4. drop、delete、truncate
+  5. 存储过程
+  6. 巴斯-科德范式（BCNF第三范式的子集）、第四范式(4NF）和第五范式（5NF，又称完美范式）
   
 - Question：
   1. **说说三范式？**
@@ -77,6 +78,11 @@
      - 第二范式：有主键，非关键字段依赖主键（唯一性，一个表只说明一个事务）
      - 第三范式：非主键字段不能相互依赖（不存在传递关系）
      - 并不是所有的表一定要满足三大范式
+     
+  1. **反范式？**
+  
+     - 数据库要求满足三范式，不能有冗余字段
+     - 但是有的冗余字段可以方便查询（eg：单价*数量=金额，但是多一列金额可以提高查询速度）
      
   1. **char和varchar区别？**
   
@@ -139,7 +145,7 @@
 # 引擎
 
 - Conception：
-  1. InnoDB、MyISAM、Memory
+  1. InnoDB、MyISAM（咪塞姆）、Memory
   
 - Question：
   1. InnoDB和MyISAM区别
