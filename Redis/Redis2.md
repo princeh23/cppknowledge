@@ -280,7 +280,7 @@
   
      ```mysql
      //如果EXEC之前balanced被 其他客户端 改动，EXEC失败
-     WATCT balanced 
+     WATCH balanced 
      
      //开启事务
      MULTI
