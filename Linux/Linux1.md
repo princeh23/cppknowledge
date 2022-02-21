@@ -29,7 +29,7 @@
      - df：查看磁盘使用情况
      - free：查看内存使用情况
   2. **Linux下进程相关命令？**
-     - ps
+     - ps：查出进程号
      - top
      - kill
   3. **linux下改变文件权限的命令有哪些？**
@@ -42,4 +42,8 @@
      - 查看进程下的线程：ps -mp pid -o THREAD,tid,time/ top -H -p pid
      - 查看堆栈信息：jstack -l pid > test.txt
      - [讲解](https://blog.csdn.net/weixin_39456575/article/details/113780635)
-  5. 
+  5. **kill -9 发生了什么？**
+     - kill -Signal pid
+     - pid可以用ps命令查
+     - kill默认-15：需要关闭，自行退出
+     - -9：被终结立刻退出，强制杀死进程

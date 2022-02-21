@@ -947,21 +947,24 @@
      
   1. **内存模型（无多态、有多态 单一继承、多重继承、虚拟继承）?**
   
-     - 单一继承无多态
+      - 与**成员函数**和**静态成员**无关
+      - 类为数据成员时候+类的大小（**空类**的话为1，但是字节对齐之后是4/8）
+      - 有虚函数指针的大小
+      - **单一**继承无多态
   
-     ![img](https://img-blog.csdn.net/20170716213346659?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY4NDkyMzM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
+      ![img](https://img-blog.csdn.net/20170716213346659?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY4NDkyMzM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
   
-     - 单一继承有多态
-       ![img](https://img-blog.csdn.net/20170716220134403?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY4NDkyMzM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
-     - 多重继承：每个虚函数表中的f都被覆盖
-     - ![这里写图片描述](https://img-blog.csdn.net/20180317175113558?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZ2l0aHViXzMzODczOTY5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
-     - ![这里写图片描述](https://img-blog.csdn.net/20180317175138455?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZ2l0aHViXzMzODczOTY5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
-     - 菱形继承
-     - ![img](https://img-blog.csdn.net/20180227110103852)
-     - A C A B D
-     - 虚 菱形继承
-     - ![img](https://img-blog.csdn.net/20180227110228784)
-     - A C B D
+      - **单一**继承有多态
+        ![img](https://img-blog.csdn.net/20170716220134403?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY4NDkyMzM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
+      - **多重**继承：每个虚函数表中的f都被覆盖
+      - ![这里写图片描述](https://img-blog.csdn.net/20180317175113558?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZ2l0aHViXzMzODczOTY5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+      - ![这里写图片描述](https://img-blog.csdn.net/20180317175138455?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZ2l0aHViXzMzODczOTY5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+      - **菱形**继承
+      - ![img](https://img-blog.csdn.net/20180227110103852)
+      - A C A B D
+      - **虚 菱形**继承
+      - ![img](https://img-blog.csdn.net/20180227110228784)
+      - A C B D
   
   1. 
 
