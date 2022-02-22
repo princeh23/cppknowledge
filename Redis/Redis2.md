@@ -418,6 +418,19 @@
   1. 如何提高 Redis 命中率？
   2. 怎么优化 Redis 的内存占用？
 
+# 实际问题（大key）
+
+- Conception：
+  1. 大key
+- Question：
+  1. **大key问题**
+     - [大key问题讲解](https://mp.weixin.qq.com/s/OKLmc_QJP-Uer22zF5OimA)
+     - 原因：一个歌单的收藏人有谁（value是一个list，很大）
+     - 影响：Redis执行命令是单线程的，客户端超时，并发量下降
+     - 解决：
+       - 可删除：>4.0渐进式删除，<4.0惰性删除
+       - 不可删除：压缩、拆分
+
 # todo
 
 - 容灾
